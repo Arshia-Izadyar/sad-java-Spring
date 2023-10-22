@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>hi</h1>
+<p th:text="${car}"/>
+<p th:text="${car.id}"/>
+<h1>Delete Car</h1>
+<form id="deleteCarForm" th:action="@{'/delete/' + ${car.id}}" method="post">
+    <input type="submit" value="Delete Car">
+
+</form>
+
+<h1>Update</h1>
+<form th:action="@{'/' + ${car.id}}" th:object="${car}" method="post">
+    brand: <input type="text" th:field="*{brand}">
+    name: <input type="text" th:field="*{name}">
+    year: <input type="text" th:field="*{year}">
+
+    <span th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" class="errors"></span>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errors"></span>
+    <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="errors"></span>
+    <input type="submit" value="ok">
+</form>
+
+</body>
+</html>
